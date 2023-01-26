@@ -43,5 +43,15 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FitnessTracker.Application\FitnessTracker.Application.csproj">
+      <Project>{89d65117-e8dd-4382-836b-218604cb2045}</Project>
+      <Name>FitnessTracker.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FitnessTracker.Domain\FitnessTracker.Domain.csproj">
+      <Project>{02ec59d2-7f70-4256-8960-2a573a9fc4cd}</Project>
+      <Name>FitnessTracker.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
