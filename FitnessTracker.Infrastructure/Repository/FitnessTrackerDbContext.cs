@@ -7,7 +7,7 @@ namespace FitnessTracker.Infrastructure.Repository
     {
         public DbSet<Report> Reports { get; set; }
 
-        public FitnessTrackerDbContext() : base("FitnessTrackerDB") { }
+        public FitnessTrackerDbContext() : base("FitnessTracker_DB") { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
