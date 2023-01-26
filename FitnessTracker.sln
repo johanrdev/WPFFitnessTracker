@@ -5,6 +5,12 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTracker.Presentation", "FitnessTracker.Presentation\FitnessTracker.Presentation.csproj", "{D6A5CC16-C46A-4FA9-9084-86320EAA7E36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTracker.Infrastructure", "FitnessTracker.Infrastructure\FitnessTracker.Infrastructure.csproj", "{02AE8F16-6F13-4685-80E3-8A3360954D47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTracker.Application", "FitnessTracker.Application\FitnessTracker.Application.csproj", "{89D65117-E8DD-4382-836B-218604CB2045}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTracker.Domain", "FitnessTracker.Domain\FitnessTracker.Domain.csproj", "{02EC59D2-7F70-4256-8960-2A573A9FC4CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{D6A5CC16-C46A-4FA9-9084-86320EAA7E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6A5CC16-C46A-4FA9-9084-86320EAA7E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6A5CC16-C46A-4FA9-9084-86320EAA7E36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02AE8F16-6F13-4685-80E3-8A3360954D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02AE8F16-6F13-4685-80E3-8A3360954D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02AE8F16-6F13-4685-80E3-8A3360954D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02AE8F16-6F13-4685-80E3-8A3360954D47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89D65117-E8DD-4382-836B-218604CB2045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89D65117-E8DD-4382-836B-218604CB2045}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89D65117-E8DD-4382-836B-218604CB2045}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89D65117-E8DD-4382-836B-218604CB2045}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02EC59D2-7F70-4256-8960-2A573A9FC4CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02EC59D2-7F70-4256-8960-2A573A9FC4CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02EC59D2-7F70-4256-8960-2A573A9FC4CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02EC59D2-7F70-4256-8960-2A573A9FC4CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
