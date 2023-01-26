@@ -1,5 +1,6 @@
 ﻿using FitnessTracker.Presentation.Module.Main;
 using FitnessTracker.Presentation.Module.Main.Views;
+using FitnessTracker.Presentation.Module.Reports;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -25,6 +26,7 @@ namespace FitnessTracker.Presentation
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             moduleCatalog.AddModule<MainModule>();
+            moduleCatalog.AddModule<ReportsModule>();
         }
     }
 }
