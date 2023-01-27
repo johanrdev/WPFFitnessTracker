@@ -1,14 +1,15 @@
 ﻿using FitnessTracker.Application.Services;
+using FitnessTracker.Domain.Events;
 using FitnessTracker.Domain.Models;
+using Prism.Events;
 using Prism.Mvvm;
-using System.Collections;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace FitnessTracker.Presentation.Module.Reports.ViewModels
 {
     internal class ReportsDataGridViewModel : BindableBase
     {
+        private IEventAggregator _eventAggregator;
         private IDataProvider<Report> _reportsProvider;
 
         public IDataProvider<Report> ReportsProvider
@@ -17,8 +18,9 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
             set => SetProperty(ref _reportsProvider, value);
         }
 
-        public ReportsDataGridViewModel(IDataProvider<Report> reportsProvider)
+        public ReportsDataGridViewModel(IEventAggregator eventAggregator, IDataProvider<Report> reportsProvider)
         {
+            _eventAggregator = eventAggregator;
             _reportsProvider = reportsProvider;
 
             LoadData();
@@ -26,11 +28,20 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
 
         private void LoadData()
         {
+            ReportsProvider.IsLoading = true;
+
             Task.Run(() =>
             {
                 var reports = ReportsProvider.LoadData();
 
-                App.Current.Dispatcher.Invoke(() => ReportsProvider.SetData(reports));
+                App.Current.Dispatcher.Invoke(() =>
+                {
+                    ReportsProvider.SetData(reports);
+
+                    ReportsProvider.IsLoading = false;
+
+                    _eventAggregator.GetEvent<AfterLoadedReportsEvent>().Publish();
+                });
             });
         }
     }

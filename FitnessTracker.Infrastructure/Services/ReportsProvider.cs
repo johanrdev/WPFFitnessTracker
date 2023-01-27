@@ -5,8 +5,6 @@ using Prism.Mvvm;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace FitnessTracker.Infrastructure.Services
 {
@@ -29,13 +27,7 @@ namespace FitnessTracker.Infrastructure.Services
 
         public IEnumerable<Report> LoadData()
         {
-            IsLoading = true;
-
-            Thread.Sleep(3000);
-
             var unitOfWork = new UnitOfWork(new FitnessTrackerDbContext());
-
-            IsLoading = false;
 
             Debug.WriteLine($"Is Loading: {IsLoading}");
 

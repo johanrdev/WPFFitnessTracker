@@ -8,10 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <controls:LoadingSpinner IsLoading="{ Binding Path=ReportsProvider.IsLoading }" Diameter="45" Thickness="5" />
-        
-        <DataGrid ItemsSource="{ Binding Path=ReportsProvider.Data }">
-            <DataGrid.Style>
-                <Style TargetType="{ x:Type DataGrid }">
+
+        <Grid>
+            <Grid.Style>
+                <Style TargetType="{ x:Type Grid }">
                     <Style.Triggers>
                         <DataTrigger Binding="{ Binding Path=ReportsProvider.IsLoading }" Value="True">
                             <Setter Property="Visibility" Value="Collapsed" />
@@ -21,7 +21,19 @@
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
-            </DataGrid.Style>
-        </DataGrid>
+            </Grid.Style>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <DockPanel Grid.Row="0" LastChildFill="False">
+                <Button DockPanel.Dock="Left" MinWidth="60" Content="Add" />
+                <Button DockPanel.Dock="Left" MinWidth="60" Content="Delete" />
+            </DockPanel>
+
+            <DataGrid Grid.Row="1" ItemsSource="{ Binding Path=ReportsProvider.Data }" />
+        </Grid>
     </Grid>
 </UserControl>

@@ -16,7 +16,7 @@ namespace FitnessTracker.Presentation.Converters
                 return 0;
             }
 
-            double circumference = Math.PI * diameter;
+            double circumference = Math.PI * (diameter - thickness);
             double lineLength = circumference * 0.75;
             double gapLength = circumference - lineLength;
             return new DoubleCollection(new[] { lineLength / thickness, gapLength / thickness });
