@@ -30,8 +30,6 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
             {
                 var reports = ReportsProvider.LoadData();
 
-                Debug.WriteLine($"Loaded: {((IList)reports).Count}");
-
                 App.Current.Dispatcher.Invoke(() => ReportsProvider.SetData(reports));
             });
         }

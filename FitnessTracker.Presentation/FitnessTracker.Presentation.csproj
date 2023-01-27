@@ -89,6 +89,8 @@
   <ItemGroup>
     <Compile Include="Constants\RegionsNames.cs" />
     <Compile Include="Constants\ViewTypes.cs" />
+    <Compile Include="Controls\LoadingSpinner.cs" />
+    <Compile Include="Converters\DiameterAndThicknessToStrokeDashArrayConverter.cs" />
     <Compile Include="Module.Main\MainModule.cs" />
     <Compile Include="Module.Main\ViewModels\NavigationViewModel.cs" />
     <Compile Include="Module.Main\ViewModels\ShellWindowViewModel.cs" />
@@ -187,6 +189,10 @@
     <Page Include="Module.Reports\Views\ReportsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup />
