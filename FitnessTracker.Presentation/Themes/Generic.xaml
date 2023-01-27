@@ -13,7 +13,7 @@
                         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
                         <converters:DiameterAndThicknessToStrokeDashArrayConverter x:Key="DiameterAndThicknessToStrokeDashArrayConverter" />
                     </ControlTemplate.Resources>
-                    <Ellipse Width="{ TemplateBinding Diameter }" Height="{ TemplateBinding Diameter }" Stroke="Black" StrokeThickness="{ TemplateBinding Thickness }" RenderTransformOrigin="0.5 0.5" Visibility="{ TemplateBinding IsLoading, Converter={ StaticResource BooleanToVisibilityConverter } }">
+                    <Ellipse Width="{ TemplateBinding Diameter }" Height="{ TemplateBinding Diameter }" Stroke="{ TemplateBinding Color }" StrokeThickness="{ TemplateBinding Thickness }" StrokeDashCap="Round" RenderTransformOrigin="0.5 0.5" Visibility="{ TemplateBinding IsLoading, Converter={ StaticResource BooleanToVisibilityConverter } }">
                         <Ellipse.StrokeDashArray>
                             <MultiBinding Converter="{ StaticResource DiameterAndThicknessToStrokeDashArrayConverter }">
                                 <Binding Path="Diameter" RelativeSource="{ RelativeSource TemplatedParent }" />

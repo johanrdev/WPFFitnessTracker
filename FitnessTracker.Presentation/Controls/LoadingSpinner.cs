@@ -1,5 +1,7 @@
-﻿    using System.Windows;
+﻿
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace FitnessTracker.Presentation.Controls
 {
@@ -33,6 +35,16 @@ namespace FitnessTracker.Presentation.Controls
         {
             get { return (double)GetValue(ThicknessProperty); }
             set { SetValue(ThicknessProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ColorProperty =
+            DependencyProperty.Register("Color", typeof(Brush), typeof(LoadingSpinner), new PropertyMetadata(Brushes.LightGray));
+
+        public Brush Color
+        {
+            get { return (Brush)GetValue(ColorProperty); }
+            set { SetValue(ColorProperty, value); }
         }
 
         static LoadingSpinner()
