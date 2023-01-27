@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <controls:LoadingSpinner IsLoading="{ Binding Path=ReportsProvider.IsLoading }" Diameter="45" Thickness="5" />
+        <controls:LoadingSpinner IsLoading="{ Binding Path=ReportsProvider.IsLoading }" />
 
         <Grid>
             <Grid.Style>

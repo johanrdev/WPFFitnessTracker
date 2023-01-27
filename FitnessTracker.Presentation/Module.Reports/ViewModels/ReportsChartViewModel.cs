@@ -4,12 +4,14 @@ using FitnessTracker.Domain.Models;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace FitnessTracker.Presentation.Module.Reports.ViewModels
 {
@@ -25,6 +27,7 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
 
         public ObservableCollection<ISeries> Series { get; }
         public List<Axis> XAxes { get; }
+        public DelegateCommand ChartPointPointerDownCommand { get; }
 
         public ReportsChartViewModel(IEventAggregator eventAggregator, IDataProvider<Report> reportsProvider)
         {

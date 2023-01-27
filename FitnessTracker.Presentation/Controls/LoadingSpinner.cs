@@ -1,4 +1,4 @@
-﻿using System.Windows;
+﻿    using System.Windows;
 using System.Windows.Controls;
 
 namespace FitnessTracker.Presentation.Controls
@@ -17,7 +17,7 @@ namespace FitnessTracker.Presentation.Controls
 
         // Using a DependencyProperty as the backing store for Diameter.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DiameterProperty =
-            DependencyProperty.Register("Diameter", typeof(double), typeof(LoadingSpinner), new PropertyMetadata(100.0));
+            DependencyProperty.Register("Diameter", typeof(double), typeof(LoadingSpinner), new PropertyMetadata(45.0));
 
         public double Diameter
         {
@@ -27,7 +27,7 @@ namespace FitnessTracker.Presentation.Controls
 
         // Using a DependencyProperty as the backing store for Thickness.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ThicknessProperty =
-            DependencyProperty.Register("Thickness", typeof(double), typeof(LoadingSpinner), new PropertyMetadata(1.0));
+            DependencyProperty.Register("Thickness", typeof(double), typeof(LoadingSpinner), new PropertyMetadata(5.0));
 
         public double Thickness
         {
