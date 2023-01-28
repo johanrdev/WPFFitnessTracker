@@ -129,6 +129,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Module.Main\Dialogs\ConfirmActionDialog.xaml.cs">
+      <DependentUpon>ConfirmActionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Module.Main\Dialogs\ConfirmActionDialogViewModel.cs" />
     <Compile Include="Validation\Rules\DateTimeValidationRules.cs" />
     <Compile Include="Validation\Rules\NumericValidationRules.cs" />
     <Compile Include="Validation\ValidationBindableBase.cs" />
@@ -213,6 +217,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Module.Main\Dialogs\ConfirmActionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Module.Main\Views\NavigationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

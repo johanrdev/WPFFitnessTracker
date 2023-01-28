@@ -1,4 +1,5 @@
 ﻿using FitnessTracker.Presentation.Constants;
+using FitnessTracker.Presentation.Module.Main.Dialogs;
 using FitnessTracker.Presentation.Module.Main.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -18,6 +19,8 @@ namespace FitnessTracker.Presentation.Module.Main
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<StartView>();
+
+            containerRegistry.RegisterDialog<ConfirmActionDialog, ConfirmActionDialogViewModel>();
         }
     }
 }

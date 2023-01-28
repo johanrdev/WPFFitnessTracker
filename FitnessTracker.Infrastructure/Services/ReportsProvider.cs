@@ -47,5 +47,14 @@ namespace FitnessTracker.Infrastructure.Services
 
             return unitOfWork.Complete();
         }
+
+        public int RemoveRange(IEnumerable<Report> list)
+        {
+            var unitOfWork = new UnitOfWork(new FitnessTrackerDbContext());
+
+            unitOfWork.Reports.RemoveRange(list);
+
+            return unitOfWork.Complete();
+        }
     }
 }
