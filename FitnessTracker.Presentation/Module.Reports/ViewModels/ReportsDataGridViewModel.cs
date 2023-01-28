@@ -6,7 +6,6 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
-using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace FitnessTracker.Presentation.Module.Reports.ViewModels

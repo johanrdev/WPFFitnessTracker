@@ -11,7 +11,6 @@ using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace FitnessTracker.Presentation.Module.Reports.ViewModels
 {
@@ -76,9 +75,12 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
         {
             return new Axis
             {
-                Labeler = value => value < 0.0 ? (new DateTime((long)0.0).ToString("MM/dd/yy")) : (new DateTime((long)value).ToString("MM/dd/yy")),
+                Labeler = value => value < 0.0 
+                    ? (new DateTime((long)0.0).ToString("MM/dd/yy")) 
+                    : (new DateTime((long)value).ToString("MM/dd/yy")),
                 UnitWidth = TimeSpan.FromDays(1).Ticks,
-                MinStep = TimeSpan.FromDays(1).Ticks
+                MinStep = TimeSpan.FromDays(1).Ticks,
+                LabelsRotation = 45
             };
         }
     }

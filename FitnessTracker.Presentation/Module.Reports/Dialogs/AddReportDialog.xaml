@@ -6,6 +6,25 @@
              mc:Ignorable="d" 
              Height="300" Width="700"
              d:DesignHeight="300" d:DesignWidth="700">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="ValidationErrorTemplate">
+            <StackPanel>
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <AdornedElementPlaceholder x:Name="AdornedElement" />
+                </Border>
+
+                <Border Background="Transparent" BorderBrush="Red" Padding="4" BorderThickness="1" HorizontalAlignment="Left">
+                    <ItemsControl ItemsSource="{ Binding }" HorizontalAlignment="Left">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{ Binding Path=ErrorContent }" Foreground="Red" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+            </StackPanel>
+        </ControlTemplate>
+    </UserControl.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -22,9 +41,9 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Content="Date" />
-        <DatePicker Grid.Column="1" Grid.Row="0" SelectedDate="{ Binding Path=NewReport.Date }" Padding="5" Margin="0, 0, 0, 5" />
+        <DatePicker Grid.Column="1" Grid.Row="0" SelectedDate="{ Binding Path=NewDate, ValidatesOnNotifyDataErrors=True}" Validation.ErrorTemplate="{ DynamicResource ValidationErrorTemplate }" Padding="5" Margin="0, 0, 0, 5" />
         <Label Grid.Column="0" Grid.Row="2" Content="Weight" />
-        <TextBox Grid.Column="1" Grid.Row="2" Padding="5" Margin="0, 0, 0, 5" Text="{ Binding Path=NewReport.Weight }" />
+        <TextBox Grid.Column="1" Grid.Row="2" Padding="5" Margin="0, 0, 0, 5" Text="{ Binding Path=NewWeight, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True }" Validation.ErrorTemplate="{ DynamicResource ValidationErrorTemplate }" />
         <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Cancel" Padding="5" Width="80" Margin="0, 0, 5, 0" Command="{ Binding Path=CancelCommand }" />
             <Button Content="Add" Padding="5" Width="80" Command="{ Binding Path=AddCommand }" />

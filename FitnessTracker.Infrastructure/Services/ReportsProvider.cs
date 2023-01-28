@@ -4,6 +4,7 @@ using FitnessTracker.Infrastructure.Repository;
 using Prism.Mvvm;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace FitnessTracker.Infrastructure.Services
 {
@@ -28,7 +29,7 @@ namespace FitnessTracker.Infrastructure.Services
         {
             var unitOfWork = new UnitOfWork(new FitnessTrackerDbContext());
 
-            return unitOfWork.Reports.GetAll();
+            return unitOfWork.Reports.GetAll().OrderBy(r => r.Date);
         }
 
         public void SetData(IEnumerable<Report> data)

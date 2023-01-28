@@ -129,6 +129,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Validation\Rules\DateTimeValidationRules.cs" />
+    <Compile Include="Validation\Rules\NumericValidationRules.cs" />
+    <Compile Include="Validation\ValidationBindableBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\RegionsNames.cs" />

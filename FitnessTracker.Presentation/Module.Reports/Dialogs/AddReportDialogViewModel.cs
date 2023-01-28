@@ -1,24 +1,52 @@
 ﻿using FitnessTracker.Application.Services;
 using FitnessTracker.Domain.Models;
+using FitnessTracker.Presentation.Validation;
+using FitnessTracker.Presentation.Validation.Rules;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace FitnessTracker.Presentation.Module.Reports.Dialogs
 {
-    public class AddReportDialogViewModel : BindableBase, IDialogAware
+    public class AddReportDialogViewModel : ValidationBindableBase, IDialogAware
     {
-        private Report _newReport;
+        private DateTime _newDate;
+        private string _newWeight;
         private IDataProvider<Report> _reportsProvider;
 
         public string Title => "Add Report";
 
-        public Report NewReport
+        public DateTime NewDate
         {
-            get => _newReport;
-            set => SetProperty(ref _newReport, value);
+            get => _newDate;
+            set {
+                bool isValid = IsPropertyValid(value);
+
+                if (isValid)
+                {
+                    _newDate = value;
+
+                    SetProperty(ref _newDate, value);
+                }
+            }
+        }
+
+        public string NewWeight
+        {
+            get => _newWeight;
+            set
+            {
+                bool isValid = IsPropertyValid(value);
+
+                if (isValid)
+                {
+                    _newWeight = value;
+
+                    SetProperty(ref _newWeight, value);
+                }
+            }
         }
 
         public IDataProvider<Report> ReportsProvider
@@ -36,22 +64,23 @@ namespace FitnessTracker.Presentation.Module.Reports.Dialogs
         {
             _reportsProvider = reportsProvider;
 
+            Errors = new Dictionary<string, IList<object>>();
+            ValidationRules = new Dictionary<string, List<ValidationRule>>();
+            ValidationRules.Add(nameof(NewWeight), new List<ValidationRule>() { new NumericValidationRules() });
+            ValidationRules.Add(nameof(NewDate), new List<ValidationRule>() { new DateTimeValidationRules() });
+
             AddCommand = new DelegateCommand(ExecuteAddCommand);
             CancelCommand = new DelegateCommand(ExecuteCancelCommand);
         }
 
         private void ExecuteAddCommand()
         {
-            var result = ReportsProvider.Add(NewReport);
+            var newReport = new Report { Date = NewDate, Weight = Convert.ToDouble(NewWeight) };
+            var result = ReportsProvider.Add(newReport);
 
             if (result == 1)
             {
-                Debug.WriteLine("Added!");
                 RequestClose?.Invoke(new DialogResult(ButtonResult.OK));
-            } 
-            else
-            {
-                Debug.WriteLine("Something went wrong");
             }
         }
 
@@ -72,7 +101,8 @@ namespace FitnessTracker.Presentation.Module.Reports.Dialogs
 
         public void OnDialogOpened(IDialogParameters parameters)
         {
-            NewReport = new Report();
+            NewDate = DateTime.Now;
+            NewWeight = "80.0";
         }
     }
 }
