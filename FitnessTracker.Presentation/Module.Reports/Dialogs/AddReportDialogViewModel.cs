@@ -14,7 +14,6 @@ namespace FitnessTracker.Presentation.Module.Reports.Dialogs
     {
         private DateTime _newDate;
         private string _newWeight;
-        private IDataProvider<Report> _reportsProvider;
 
         public string Title => "Add Report";
 
@@ -49,21 +48,13 @@ namespace FitnessTracker.Presentation.Module.Reports.Dialogs
             }
         }
 
-        public IDataProvider<Report> ReportsProvider
-        {
-            get => _reportsProvider;
-            set => SetProperty(ref _reportsProvider, value);
-        }
-
         public DelegateCommand AddCommand { get; }
         public DelegateCommand CancelCommand { get; }
 
         public event Action<IDialogResult> RequestClose;
 
-        public AddReportDialogViewModel(IDataProvider<Report> reportsProvider)
+        public AddReportDialogViewModel()
         {
-            _reportsProvider = reportsProvider;
-
             Errors = new Dictionary<string, IList<object>>();
             ValidationRules = new Dictionary<string, List<ValidationRule>>();
             ValidationRules.Add(nameof(NewWeight), new List<ValidationRule>() { new NumericValidationRules() });
@@ -76,12 +67,12 @@ namespace FitnessTracker.Presentation.Module.Reports.Dialogs
         private void ExecuteAddCommand()
         {
             var newReport = new Report { Date = NewDate, Weight = Convert.ToDouble(NewWeight) };
-            var result = ReportsProvider.Add(newReport);
 
-            if (result == 1)
-            {
-                RequestClose?.Invoke(new DialogResult(ButtonResult.OK));
-            }
+            var dialogParameters = new DialogParameters();
+
+            dialogParameters.Add("NewReport", newReport);
+
+            RequestClose?.Invoke(new DialogResult(ButtonResult.OK, dialogParameters));
         }
 
         private void ExecuteCancelCommand()

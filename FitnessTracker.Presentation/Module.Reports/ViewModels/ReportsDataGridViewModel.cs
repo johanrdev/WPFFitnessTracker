@@ -7,6 +7,7 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
+using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Linq;
@@ -19,11 +20,18 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
         private IEventAggregator _eventAggregator;
         private IDialogService _dialogService;
         private IDataProvider<Report> _reportsProvider;
+        private Report _selectedReport;
 
         public IDataProvider<Report> ReportsProvider
         {
             get => _reportsProvider;
             set => SetProperty(ref _reportsProvider, value);
+        }
+
+        public Report SelectedReport
+        {
+            get => _selectedReport;
+            set => SetProperty(ref _selectedReport, value);
         }
 
         public DelegateCommand AddReportCommand { get; }
@@ -42,7 +50,8 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
             LoadData();
 
             AddReportCommand = new DelegateCommand(ExecuteAddReportCommand);
-            DeleteSelectedCommand = new DelegateCommand<object>(ExecuteDeleteSelectedCommand);
+            DeleteSelectedCommand = new DelegateCommand<object>(ExecuteDeleteSelectedCommand, CanExecuteDeleteSelectedCommand)
+                .ObservesProperty(() => SelectedReport);
         }
 
         private void LoadData()
@@ -68,7 +77,19 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
         {
             _dialogService.ShowDialog(nameof(AddReportDialog), null, callback => 
             {
-                LoadData();
+                if (callback.Result == ButtonResult.OK)
+                {
+                    var containsNewReport = callback.Parameters.ContainsKey("NewReport");
+
+                    if (containsNewReport)
+                    {
+                        var newReport = callback.Parameters.GetValue<Report>("NewReport");
+
+                        ReportsProvider.Add(newReport);
+
+                        LoadData();
+                    }
+                }
             });
         }
 
@@ -85,6 +106,11 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
                     LoadData();
                 }
             });
+        }
+
+        private bool CanExecuteDeleteSelectedCommand(object arg)
+        {
+            return SelectedReport != null;
         }
     }
 }

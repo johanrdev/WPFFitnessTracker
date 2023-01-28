@@ -33,7 +33,7 @@
                 <Button DockPanel.Dock="Left" MinWidth="60" Content="Delete" Command="{ Binding Path=DeleteSelectedCommand }" CommandParameter="{ Binding Path=SelectedItems, ElementName=ReportsDataGrid }" />
             </DockPanel>
 
-            <DataGrid x:Name="ReportsDataGrid" Grid.Row="1" ItemsSource="{ Binding Path=ReportsProvider.Data }" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid x:Name="ReportsDataGrid" Grid.Row="1" ItemsSource="{ Binding Path=ReportsProvider.Data }" SelectedItem="{ Binding Path=SelectedReport }" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Date" Binding="{ Binding Path=Date }" Width="1*" />
                     <DataGridTextColumn Header="Weight" Binding="{ Binding Path=Weight }" Width="1*" />

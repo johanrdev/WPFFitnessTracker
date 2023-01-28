@@ -4,7 +4,6 @@
     xmlns:controls="clr-namespace:FitnessTracker.Presentation.Controls"
     xmlns:converters="clr-namespace:FitnessTracker.Presentation.Converters">
 
-
     <Style TargetType="{x:Type controls:LoadingSpinner}">
         <Setter Property="Template">
             <Setter.Value>

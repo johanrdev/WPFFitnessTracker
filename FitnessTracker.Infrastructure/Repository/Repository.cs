@@ -48,10 +48,7 @@ namespace FitnessTracker.Infrastructure.Repository
 
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
-            foreach (var entity in entities)
-            {
-                Context.Set<TEntity>().Attach(entity);
-            }
+            foreach (var entity in entities) Context.Set<TEntity>().Attach(entity);
 
             Context.Set<TEntity>().RemoveRange(entities);
         }
