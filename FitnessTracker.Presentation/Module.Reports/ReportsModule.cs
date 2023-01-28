@@ -1,4 +1,5 @@
 ﻿using FitnessTracker.Presentation.Constants;
+using FitnessTracker.Presentation.Module.Reports.Dialogs;
 using FitnessTracker.Presentation.Module.Reports.Views;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -20,6 +21,9 @@ namespace FitnessTracker.Presentation.Module.Reports
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<ReportsView>();
+
+            // Register dialogs
+            containerRegistry.RegisterDialog<AddReportDialog, AddReportDialogViewModel>();
         }
     }
 }

@@ -1,8 +1,12 @@
 ﻿using FitnessTracker.Application.Services;
 using FitnessTracker.Domain.Events;
 using FitnessTracker.Domain.Models;
+using FitnessTracker.Presentation.Module.Reports.Dialogs;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace FitnessTracker.Presentation.Module.Reports.ViewModels
@@ -10,6 +14,7 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
     internal class ReportsDataGridViewModel : BindableBase
     {
         private IEventAggregator _eventAggregator;
+        private IDialogService _dialogService;
         private IDataProvider<Report> _reportsProvider;
 
         public IDataProvider<Report> ReportsProvider
@@ -18,12 +23,21 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
             set => SetProperty(ref _reportsProvider, value);
         }
 
-        public ReportsDataGridViewModel(IEventAggregator eventAggregator, IDataProvider<Report> reportsProvider)
+        public DelegateCommand AddReportCommand { get; }
+
+        public ReportsDataGridViewModel(
+            IEventAggregator eventAggregator, 
+            IDialogService dialogService, 
+            IDataProvider<Report> reportsProvider
+            )
         {
             _eventAggregator = eventAggregator;
+            _dialogService = dialogService;
             _reportsProvider = reportsProvider;
 
             LoadData();
+
+            AddReportCommand = new DelegateCommand(ExecuteAddReportCommand);
         }
 
         private void LoadData()
@@ -43,6 +57,11 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
                     _eventAggregator.GetEvent<AfterLoadedReportsEvent>().Publish();
                 });
             });
+        }
+
+        private void ExecuteAddReportCommand()
+        {
+            _dialogService.ShowDialog(nameof(AddReportDialog), null, result => { });
         }
     }
 }

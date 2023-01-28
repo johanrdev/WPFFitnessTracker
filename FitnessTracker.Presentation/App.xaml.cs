@@ -23,6 +23,7 @@ namespace FitnessTracker.Presentation
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // Register services
             containerRegistry.RegisterSingleton<IDataProvider<Report>, ReportsProvider>();
         }
 

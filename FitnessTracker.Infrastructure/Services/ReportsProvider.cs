@@ -4,7 +4,6 @@ using FitnessTracker.Infrastructure.Repository;
 using Prism.Mvvm;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace FitnessTracker.Infrastructure.Services
 {
@@ -18,7 +17,7 @@ namespace FitnessTracker.Infrastructure.Services
             set => SetProperty(ref _isLoading, value);
         }
 
-        public ObservableCollection<Report> Data { get; private set; }
+        public ObservableCollection<Report> Data { get; }
 
         public ReportsProvider()
         {
@@ -28,8 +27,6 @@ namespace FitnessTracker.Infrastructure.Services
         public IEnumerable<Report> LoadData()
         {
             var unitOfWork = new UnitOfWork(new FitnessTrackerDbContext());
-
-            Debug.WriteLine($"Is Loading: {IsLoading}");
 
             return unitOfWork.Reports.GetAll();
         }

@@ -29,11 +29,18 @@
             </Grid.RowDefinitions>
             
             <DockPanel Grid.Row="0" LastChildFill="False">
-                <Button DockPanel.Dock="Left" MinWidth="60" Content="Add" />
-                <Button DockPanel.Dock="Left" MinWidth="60" Content="Delete" />
+                <Button DockPanel.Dock="Left" MinWidth="60" Content="Add" Command="{ Binding Path=AddReportCommand }" />
+                <Button DockPanel.Dock="Left" MinWidth="60" Content="Delete" Command="{ Binding Path=RemoveSelectionCommand }" />
             </DockPanel>
 
-            <DataGrid Grid.Row="1" ItemsSource="{ Binding Path=ReportsProvider.Data }" />
+            <DataGrid Grid.Row="1" ItemsSource="{ Binding Path=ReportsProvider.Data }" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Date" Binding="{ Binding Path=Date }" Width="1*" />
+                    <DataGridTextColumn Header="Weight" Binding="{ Binding Path=Weight }" Width="1*" />
+                    <DataGridTextColumn Width="4*" />
+                    <DataGridTextColumn Width="1*" />
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </Grid>
 </UserControl>

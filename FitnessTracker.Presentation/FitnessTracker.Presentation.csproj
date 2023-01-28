@@ -148,6 +148,10 @@
     <Compile Include="Module.Main\Views\StartView.xaml.cs">
       <DependentUpon>StartView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Module.Reports\Dialogs\AddReportDialogViewModel.cs" />
+    <Compile Include="Module.Reports\Dialogs\AddReportDialog.xaml.cs">
+      <DependentUpon>AddReportDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Module.Reports\ReportsModule.cs" />
     <Compile Include="Module.Reports\ViewModels\ReportsChartOptionsViewModel.cs" />
     <Compile Include="Module.Reports\ViewModels\ReportsChartViewModel.cs" />
@@ -215,6 +219,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Module.Main\Views\StartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Module.Reports\Dialogs\AddReportDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
