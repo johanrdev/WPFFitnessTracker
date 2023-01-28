@@ -45,6 +45,8 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
             var lineSeries = InitializeLineSeries();
             var xAxis = InitializeAxisX();
 
+            Series.Clear();
+            XAxes.Clear();
             Series.Add(lineSeries);
             XAxes.Add(xAxis);
         }
@@ -60,7 +62,7 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
                 },
                 Name = "Weight",
                 Values = ReportsProvider.Data,
-                TooltipLabelFormatter = value => $"{value.Context.Series.Name}: {value.PrimaryValue}3 KG",
+                TooltipLabelFormatter = value => $"{value.Context.Series.Name}: {value.PrimaryValue} KG",
                 LineSmoothness = 0,
                 GeometrySize = 10,
                 Stroke = new SolidColorPaint(new SKColor(0, 137, 123, 255)) { StrokeThickness = 4 },

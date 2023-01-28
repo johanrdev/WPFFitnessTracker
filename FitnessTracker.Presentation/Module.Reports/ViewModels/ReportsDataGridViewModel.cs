@@ -61,7 +61,10 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
 
         private void ExecuteAddReportCommand()
         {
-            _dialogService.ShowDialog(nameof(AddReportDialog), null, result => { });
+            _dialogService.ShowDialog(nameof(AddReportDialog), null, result => 
+            {
+                LoadData();
+            });
         }
     }
 }

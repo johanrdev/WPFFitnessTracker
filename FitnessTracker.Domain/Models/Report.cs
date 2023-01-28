@@ -6,7 +6,7 @@ namespace FitnessTracker.Domain.Models
     public class Report : BindableBase
     {
         private int _id;
-        private DateTime _date;
+        private DateTime _date = DateTime.Today;
         private double _weight;
 
         public int Id

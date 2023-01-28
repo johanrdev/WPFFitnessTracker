@@ -37,5 +37,14 @@ namespace FitnessTracker.Infrastructure.Services
 
             foreach (var item in data) Data.Add(item);
         }
+
+        public int Add(Report item)
+        {
+            var unitOfWork = new UnitOfWork(new FitnessTrackerDbContext());
+
+            unitOfWork.Reports.Add(item);
+
+            return unitOfWork.Complete();
+        }
     }
 }
