@@ -56,5 +56,16 @@ namespace FitnessTracker.Infrastructure.Services
 
             return unitOfWork.Complete();
         }
+
+        public int Update(Report item)
+        {
+            var unitOfWork = new UnitOfWork(new FitnessTrackerDbContext());
+
+            var report = unitOfWork.Reports.Get(item.Id);
+            report.Date = item.Date;
+            report.Weight = item.Weight;
+
+            return unitOfWork.Complete();
+        }
     }
 }

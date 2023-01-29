@@ -12,5 +12,6 @@ namespace FitnessTracker.Application.Services
         void SetData(IEnumerable<T> data);
         int Add(T item);
         int RemoveRange(IEnumerable<T> item);
+        int Update(T item);
     }
 }

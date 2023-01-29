@@ -6,12 +6,57 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Style TargetType="TabItem">
-            <Setter Property="MinWidth" Value="80" />
-            <Setter Property="Header" Value="{ Binding DataContext.Title }" />
-        </Style>
+        <ControlTemplate x:Key="ValidationErrorTemplate">
+            <StackPanel>
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <AdornedElementPlaceholder x:Name="AdornedElement" />
+                </Border>
+
+                <Border Background="Transparent" BorderBrush="Red" Padding="4" BorderThickness="1" HorizontalAlignment="Left">
+                    <ItemsControl ItemsSource="{ Binding }" HorizontalAlignment="Left">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{ Binding Path=ErrorContent }" Foreground="Red" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+            </StackPanel>
+        </ControlTemplate>
     </UserControl.Resources>
-    <Grid>
-        <Label Content="ReportDetailView" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Content="Date" />
+        <DatePicker Grid.Column="1" Grid.Row="0" SelectedDate="{ Binding Path=Date, ValidatesOnNotifyDataErrors=True }" Validation.ErrorTemplate="{ DynamicResource ValidationErrorTemplate }" Padding="5" Margin="0, 0, 0, 5" />
+        <Label Grid.Column="0" Grid.Row="2" Content="Weight" />
+        <TextBox Grid.Column="1" Grid.Row="2" Padding="5" Margin="0, 0, 0, 5" Text="{ Binding Path=Weight, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True }" Validation.ErrorTemplate="{ DynamicResource ValidationErrorTemplate }" />
+
+        <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Update" Padding="5" Width="80" Command="{ Binding Path=UpdateCommand }">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="True" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=HasErrors}" Value="True">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

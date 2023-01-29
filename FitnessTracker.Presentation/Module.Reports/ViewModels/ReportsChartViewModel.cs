@@ -43,6 +43,7 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
             XAxes = new List<Axis>();
 
             eventAggregator.GetEvent<LoadReportsTabControlEvent>().Subscribe(Initialize);
+            eventAggregator.GetEvent<ReloadReportsRepositoryEvent>().Subscribe(Initialize);
 
             OpenChartPointDataCommand = new DelegateCommand<object>(ExecuteOpenChartPointDataCommand);
 

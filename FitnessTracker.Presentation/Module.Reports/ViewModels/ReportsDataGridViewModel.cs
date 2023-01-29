@@ -7,9 +7,7 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
-using System;
 using System.Collections;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 

@@ -43,7 +43,7 @@
         <Label Grid.Column="0" Grid.Row="0" Content="Date" />
         <DatePicker Grid.Column="1" Grid.Row="0" SelectedDate="{ Binding Path=NewDate, ValidatesOnNotifyDataErrors=True }" Validation.ErrorTemplate="{ DynamicResource ValidationErrorTemplate }" Padding="5" Margin="0, 0, 0, 5" />
         <Label Grid.Column="0" Grid.Row="2" Content="Weight" />
-        <TextBox Style="{DynamicResource TextBoxStyle1}" Grid.Column="1" Grid.Row="2" Padding="5" Margin="0, 0, 0, 5" Text="{ Binding Path=NewWeight, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True }" Validation.ErrorTemplate="{ DynamicResource ValidationErrorTemplate }" />
+        <TextBox Grid.Column="1" Grid.Row="2" Padding="5" Margin="0, 0, 0, 5" Text="{ Binding Path=NewWeight, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True }" Validation.ErrorTemplate="{ DynamicResource ValidationErrorTemplate }" />
 
         <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Cancel" Padding="5" Width="80" Margin="0, 0, 5, 0" Command="{ Binding Path=CancelCommand }" />

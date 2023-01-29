@@ -26,7 +26,7 @@ namespace FitnessTracker.Presentation.Module.Reports.Dialogs
 
                 if (isValid)
                 {
-                    _newDate = value;
+                    //_newDate = value;
 
                     SetProperty(ref _newDate, value);
                 }
@@ -42,7 +42,7 @@ namespace FitnessTracker.Presentation.Module.Reports.Dialogs
 
                 if (isValid)
                 {
-                    _newWeight = value;
+                    //_newWeight = value;
 
                     SetProperty(ref _newWeight, value);
                 }
