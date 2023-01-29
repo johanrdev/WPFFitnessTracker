@@ -7,6 +7,17 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="ToolBarTrayBackground" Color="#FFEEF5FD"/>
+        <Style x:Key="ToolBarTrayStyle1" TargetType="{x:Type ToolBarTray}">
+            <Setter Property="Background" Value="Transparent" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Source={x:Static SystemParameters.HighContrast}}" Value="true">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <controls:LoadingSpinner IsLoading="{ Binding Path=ReportsProvider.IsLoading }" />
 
@@ -29,7 +40,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <ToolBarTray Grid.Row="0" IsLocked="True" Background="#333333">
+            <ToolBarTray Style="{DynamicResource ToolBarTrayStyle1}" Grid.Row="0" IsLocked="True" Background="#1a237e">
                 <ToolBar Style="{DynamicResource ToolBarStyle1}" Grid.Row="0" Background="Transparent">
                     <Button Width="30" Height="30" Padding="6" Command="{ Binding Path=AddReportCommand }">
                         <fa:ImageAwesome Icon="Plus" Foreground="LightGray" />

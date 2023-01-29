@@ -6,7 +6,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="180">
-    <Grid MinWidth="180">
+    <Grid Width="180">
         <ListView ItemsSource="{ Binding Path=NavigationItems }" SelectedItem="{ Binding Path=SelectedNavigationItem }" Style="{ StaticResource NavigationListView }" ItemContainerStyle="{ StaticResource NavigationListViewItemContainerStyle }" SelectionMode="Single" DisplayMemberPath="DisplayName">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">

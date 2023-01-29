@@ -7,6 +7,53 @@
              xmlns:constants="clr-namespace:FitnessTracker.Presentation.Constants"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BorderGapMaskConverter x:Key="BorderGapMaskConverter"/>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Foreground" Value="#7986cb" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="BorderBrush" Value="#D5DFE5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupBox}">
+                        <Grid SnapsToDevicePixels="true">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="6"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="6"/>
+                            </Grid.RowDefinitions>
+                            <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="3" Grid.Row="1"/>
+                            <Border BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4" Grid.ColumnSpan="4" Grid.RowSpan="3" Grid.Row="1">
+                                <Border.OpacityMask>
+                                    <MultiBinding ConverterParameter="7" Converter="{StaticResource BorderGapMaskConverter}">
+                                        <Binding ElementName="Header" Path="ActualWidth"/>
+                                        <Binding Path="ActualWidth" RelativeSource="{RelativeSource Self}"/>
+                                        <Binding Path="ActualHeight" RelativeSource="{RelativeSource Self}"/>
+                                    </MultiBinding>
+                                </Border.OpacityMask>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+                                    <Border BorderBrush="White" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2"/>
+                                </Border>
+                            </Border>
+                            <Border x:Name="Header" Grid.Column="1" Padding="4" Grid.RowSpan="2" Grid.Row="0">
+                                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </Border>
+                            <ContentPresenter Grid.Column="1" Grid.ColumnSpan="2" Margin="{TemplateBinding Padding}" Grid.Row="2" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*" />
@@ -21,19 +68,23 @@
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
 
-            <GroupBox Grid.Column="0" Header="Overview" Margin="5">
+            <GroupBox Grid.Column="0" Header="OVERVIEW" Margin="5">
                 <ContentControl prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsTabControlRegion }" />
             </GroupBox>
-            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-            <GroupBox Grid.Column="2" Header="Options" Margin="5">
+            <GridSplitter Grid.Column="1" Width="5" Background="#1a237e" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+            <GroupBox Grid.Column="2" Header="OPTIONS" Margin="5">
                 <ContentControl prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsChartOptionsRegion }" />
             </GroupBox>
         </Grid>
 
-        <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+        <GridSplitter Grid.Row="1" Height="5" Background="#1a237e" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+
+        <Border Grid.Row="2">
+
+        </Border>
 
         <Grid Grid.Row="2">
-            <GroupBox Header="Data" Margin="5">
+            <GroupBox Header="DATA" Margin="5">
                 <ContentControl prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsDataGridRegion }" />
             </GroupBox>
         </Grid>

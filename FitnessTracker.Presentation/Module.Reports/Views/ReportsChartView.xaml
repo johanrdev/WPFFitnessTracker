@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <lvc:CartesianChart Grid.Row="1" Series="{ Binding Path=Series }" XAxes="{ Binding Path=XAxes }" LegendPosition="Bottom" ChartPointPointerDownCommand="{ Binding Path=OpenChartPointDataCommand }" />
+        <lvc:CartesianChart Grid.Row="1" Series="{ Binding Path=Series }" XAxes="{ Binding Path=XAxes }" YAxes="{ Binding Path=YAxes }" LegendPosition="Bottom" ChartPointPointerDownCommand="{ Binding Path=OpenChartPointDataCommand }" />
     </Grid>
 </UserControl>

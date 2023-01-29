@@ -4,11 +4,13 @@
     <Style TargetType="{ x:Type DataGridCell }">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="FontSize" Value="12" />
+        <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+        <Setter Property="BorderBrush" Value="#1a237e" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{ x:Type DataGridCell }">
-                    <Border x:Name="border" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" SnapsToDevicePixels="True">
-                        <ContentPresenter VerticalAlignment="Center" SnapsToDevicePixels="{ TemplateBinding SnapsToDevicePixels }" />
+                    <Border x:Name="border" Background="{ TemplateBinding Background }" BorderBrush="{ TemplateBinding BorderBrush }" BorderThickness="{ TemplateBinding BorderThickness }" SnapsToDevicePixels="True">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" SnapsToDevicePixels="{ TemplateBinding SnapsToDevicePixels }" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -16,7 +18,7 @@
     </Style>
 
     <Style TargetType="{x:Type DataGridRow}">
-        <Setter Property="Background" Value="#ffffff"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
         <Setter Property="ValidationErrorTemplate">
@@ -75,8 +77,9 @@
 
     <Style TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="Background" Value="#78909c" />
-        <Setter Property="Foreground" Value="#eceff1" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="#7986cb" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Padding" Value="6" />
         <Setter Property="Template">
@@ -120,12 +123,14 @@
 
     <Style TargetType="{x:Type DataGrid}">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Foreground" Value="#7986cb"/>
         <Setter Property="BorderBrush" Value="#cfd8dc"/>
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
         <Setter Property="GridLinesVisibility" Value="Horizontal" />
-        <Setter Property="HorizontalGridLinesBrush" Value="#cfd8dc" />
+        <Setter Property="HorizontalGridLinesBrush" Value="#1a237e" />
+        <Setter Property="VerticalGridLinesBrush" Value="#1a237e" />
+        <Setter Property="HorizontalGridLinesBrush" Value="#1a237e" />
         <Setter Property="HeadersVisibility" Value="Column" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>

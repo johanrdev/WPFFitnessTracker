@@ -33,6 +33,7 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
 
         public ObservableCollection<ISeries> Series { get; }
         public List<Axis> XAxes { get; }
+        public List<Axis> YAxes { get; }
         public DelegateCommand<object> OpenChartPointDataCommand { get; }
 
         public ReportsChartViewModel(IRegionManager regionManager, IEventAggregator eventAggregator, IDataProvider<Report> reportsProvider)
@@ -42,6 +43,7 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
             _reportsProvider = reportsProvider;
             Series = new ObservableCollection<ISeries>();
             XAxes = new List<Axis>();
+            YAxes = new List<Axis>();
 
             eventAggregator.GetEvent<LoadReportsTabControlEvent>().Subscribe(Initialize);
             eventAggregator.GetEvent<ReloadReportsRepositoryEvent>().Subscribe(Initialize);
@@ -69,12 +71,15 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
 
             var lineSeries = InitializeLineSeries();
             var xAxis = InitializeAxisX();
+            var yAxis = InitializeAxisY();
 
             Series.Clear();
             XAxes.Clear();
+            YAxes.Clear();
 
             Series.Add(lineSeries);
             XAxes.Add(xAxis);
+            YAxes.Add(yAxis);
         }
 
         private LineSeries<Report> InitializeLineSeries()
@@ -90,12 +95,10 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
                 Name = "Weight",
                 Values = ReportsProvider.Data,
                 TooltipLabelFormatter = value => $"{value.Context.Series.Name}: {value.PrimaryValue} KG",
-                LineSmoothness = 0,
-                GeometrySize = 10,
-                Stroke = new SolidColorPaint(new SKColor(0, 137, 123, 255)) { StrokeThickness = 4 },
-                Fill = new SolidColorPaint(new SKColor(0, 137, 123, 50)),
-                GeometryFill = new SolidColorPaint(new SKColor(0, 137, 123, 255)),
-                GeometryStroke = new SolidColorPaint(new SKColor(0, 137, 123, 255))
+                Stroke = new SolidColorPaint(new SKColor(194, 24, 91, 255)) { StrokeThickness = 4 },
+                Fill = new SolidColorPaint(new SKColor(173, 20, 87, 127)),
+                //GeometryFill = new SolidColorPaint(new SKColor(240, 98, 146, 255)),
+                GeometryStroke = new SolidColorPaint(new SKColor(194, 24, 91, 255)) { StrokeThickness = 2 }
             };
         }
 
@@ -108,7 +111,21 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
                     : (new DateTime((long)value).ToString("MM/dd/yy")),
                 UnitWidth = TimeSpan.FromDays(1).Ticks,
                 MinStep = TimeSpan.FromDays(1).Ticks,
-                LabelsRotation = 45
+                LabelsRotation = 45,
+                SeparatorsPaint = new SolidColorPaint(new SKColor(26, 35, 126)) { StrokeThickness = 2 },
+                CrosshairPaint = new SolidColorPaint(new SKColor(40, 53, 147, 255)) { StrokeThickness = 2 },
+                LabelsPaint = new SolidColorPaint(new SKColor(159, 168, 218, 255)),
+                TextSize = 11.0
+            };
+        }
+
+        private Axis InitializeAxisY()
+        {
+            return new Axis
+            {
+                SeparatorsPaint = new SolidColorPaint(new SKColor(26, 35, 126)) { StrokeThickness = 2 },
+                LabelsPaint = new SolidColorPaint(new SKColor(159, 168, 218, 255)),
+                TextSize = 11.0
             };
         }
     }
