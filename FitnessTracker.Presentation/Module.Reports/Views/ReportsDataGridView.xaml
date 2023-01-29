@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:FitnessTracker.Presentation.Controls"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -27,19 +28,25 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
-            <DockPanel Grid.Row="0" LastChildFill="False">
-                <Button DockPanel.Dock="Left" MinWidth="60" Content="Add" Command="{ Binding Path=AddReportCommand }" />
-                <Button DockPanel.Dock="Left" MinWidth="60" Content="Delete" Command="{ Binding Path=DeleteSelectedCommand }" CommandParameter="{ Binding Path=SelectedItems, ElementName=ReportsDataGrid }" />
-            </DockPanel>
 
-            <DataGrid x:Name="ReportsDataGrid" Grid.Row="1" GridLinesVisibility="Horizontal" ItemsSource="{ Binding Path=ReportsProvider.Data }" SelectionUnit="FullRow"  SelectedItem="{ Binding Path=SelectedReport }" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False">
-                <DataGrid.CellStyle>
+            <ToolBarTray Grid.Row="0" IsLocked="True" Background="#333333">
+                <ToolBar Style="{DynamicResource ToolBarStyle1}" Grid.Row="0" Background="Transparent">
+                    <Button Width="30" Height="30" Padding="6" Command="{ Binding Path=AddReportCommand }">
+                        <fa:ImageAwesome Icon="Plus" Foreground="LightGray" />
+                    </Button>
+                    <Button Width="30" Height="30" Padding="6" Command="{ Binding Path=DeleteSelectedCommand }" CommandParameter="{ Binding Path=SelectedItems, ElementName=ReportsDataGrid }">
+                        <fa:ImageAwesome Icon="Trash" Foreground="LightGray" />
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+
+            <DataGrid x:Name="ReportsDataGrid" Grid.Row="1" ItemsSource="{ Binding Path=ReportsProvider.Data }" SelectedItem="{ Binding Path=SelectedReport }" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False">
+                <!--<DataGrid.CellStyle>
                     <Style TargetType="DataGridCell">
                         <Setter Property="BorderThickness" Value="0"/>
                         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
                     </Style>
-                </DataGrid.CellStyle>
+                </DataGrid.CellStyle>-->
                 <DataGrid.InputBindings>
                     <MouseBinding Gesture="LeftDoubleClick" Command="{ Binding Path=OpenReportDetailCommand }" CommandParameter="{ Binding Path=SelectedItem, RelativeSource={ RelativeSource AncestorType={ x:Type DataGrid }}}" />
                 </DataGrid.InputBindings>

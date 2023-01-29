@@ -21,15 +21,21 @@
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
 
-            <ContentControl Grid.Column="0" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsTabControlRegion }" />
+            <GroupBox Grid.Column="0" Header="Overview" Margin="5">
+                <ContentControl prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsTabControlRegion }" />
+            </GroupBox>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-            <ContentControl Grid.Column="1" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsChartOptionsRegion }" />
+            <GroupBox Grid.Column="2" Header="Options" Margin="5">
+                <ContentControl prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsChartOptionsRegion }" />
+            </GroupBox>
         </Grid>
 
         <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
 
         <Grid Grid.Row="2">
-            <ContentControl prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsDataGridRegion }" />
+            <GroupBox Header="Data" Margin="5">
+                <ContentControl prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsDataGridRegion }" />
+            </GroupBox>
         </Grid>
     </Grid>
 </UserControl>

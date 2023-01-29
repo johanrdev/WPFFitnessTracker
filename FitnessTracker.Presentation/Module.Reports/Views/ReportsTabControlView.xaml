@@ -11,43 +11,43 @@
              xmlns:actions="clr-namespace:FitnessTracker.Presentation.Actions"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-<UserControl.Resources>
-    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-    <Style TargetType="TabItem">
-        <Setter Property="Header" Value="{ Binding DataContext }" />
-        <Setter Property="HeaderTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+        <Style TargetType="TabItem">
+            <Setter Property="Header" Value="{ Binding DataContext }" />
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                        <Grid MinWidth="60">
-                            <ContentControl Grid.Column="0" Content="{ Binding Path=Title }" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Grid>
+                            <Grid MinWidth="60">
+                                <ContentControl Grid.Column="0" Content="{ Binding Path=Title }" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
 
-                        <Button Grid.Column="1" Padding="4, 0" FontWeight="Bold" Cursor="Hand" Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="{ Binding Path=IsClosable, Converter={ StaticResource BooleanToVisibilityConverter } }" Margin="5, 0, 0, 0">
-                            <Button.Content>
-                                <fa:ImageAwesome Icon="WindowClose" Width="15" Height="15" Foreground="Red" />
-                            </Button.Content>
+                            <Button Grid.Column="1" Padding="4, 0" FontWeight="Bold" Cursor="Hand" Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="{ Binding Path=IsClosable, Converter={ StaticResource BooleanToVisibilityConverter } }" Margin="5, 0, 0, 0">
+                                <Button.Content>
+                                    <fa:ImageAwesome Icon="WindowClose" Width="15" Height="15" Foreground="Red" />
+                                </Button.Content>
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <actions:CloseTabTriggerAction />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
-                        </Button>
-                    </Grid>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-</UserControl.Resources>
-<Grid>
-    <controls:LoadingSpinner IsLoading="{ Binding Path=ReportsProvider.IsLoading }" />
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <controls:LoadingSpinner IsLoading="{ Binding Path=ReportsProvider.IsLoading }" />
 
-    <TabControl Grid.Row="0" Margin="5" BorderThickness="1" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsChartTabRegion }" />
-</Grid>
+        <TabControl Grid.Row="0" Margin="5" BorderThickness="1" Background="Transparent" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsChartTabRegion }" />
+    </Grid>
 </UserControl>
