@@ -6,6 +6,7 @@ using Prism.Commands;
 using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows.Controls;
 
 namespace FitnessTracker.Presentation.Module.Reports.Dialogs
@@ -66,8 +67,8 @@ namespace FitnessTracker.Presentation.Module.Reports.Dialogs
 
         private void ExecuteAddCommand()
         {
-            var newReport = new Report { Date = NewDate, Weight = Convert.ToDouble(NewWeight) };
-
+            var newDate = DateTime.Parse(string.Format("{0} 00:00:00", NewDate.Date.ToString("MM/dd/yyyy")), CultureInfo.GetCultureInfo("en-US"));
+            var newReport = new Report { Date = newDate, Weight = Convert.ToDouble(NewWeight) };
             var dialogParameters = new DialogParameters();
 
             dialogParameters.Add("NewReport", newReport);
