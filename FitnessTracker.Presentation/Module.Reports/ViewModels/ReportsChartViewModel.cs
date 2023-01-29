@@ -29,6 +29,7 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
         }
 
         public string Title => "Diagram";
+        public bool IsClosable => false;
 
         public ObservableCollection<ISeries> Series { get; }
         public List<Axis> XAxes { get; }

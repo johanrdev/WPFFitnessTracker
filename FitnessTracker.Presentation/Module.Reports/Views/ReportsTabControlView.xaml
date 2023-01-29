@@ -3,20 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:controls="clr-namespace:FitnessTracker.Presentation.Controls"
              xmlns:constants="clr-namespace:FitnessTracker.Presentation.Constants"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:actions="clr-namespace:FitnessTracker.Presentation.Actions"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <Style TargetType="TabItem">
-            <Setter Property="MinWidth" Value="80" />
-            <Setter Property="Header" Value="{ Binding DataContext.Title }" />
-        </Style>
-    </UserControl.Resources>
-    <Grid>
-        <controls:LoadingSpinner IsLoading="{ Binding Path=ReportsProvider.IsLoading }" />
-        
-        <TabControl Grid.Row="0" Margin="5" BorderThickness="1" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsChartTabRegion }" />
-    </Grid>
+<UserControl.Resources>
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+    <Style TargetType="TabItem">
+        <Setter Property="Header" Value="{ Binding DataContext }" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid MinWidth="60">
+                            <ContentControl Grid.Column="0" Content="{ Binding Path=Title }" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+
+                        <Button Grid.Column="1" Padding="4, 0" FontWeight="Bold" Cursor="Hand" Background="Transparent" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="{ Binding Path=IsClosable, Converter={ StaticResource BooleanToVisibilityConverter } }" Margin="5, 0, 0, 0">
+                            <Button.Content>
+                                <fa:ImageAwesome Icon="WindowClose" Width="15" Height="15" Foreground="Red" />
+                            </Button.Content>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <actions:CloseTabTriggerAction />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</UserControl.Resources>
+<Grid>
+    <controls:LoadingSpinner IsLoading="{ Binding Path=ReportsProvider.IsLoading }" />
+
+    <TabControl Grid.Row="0" Margin="5" BorderThickness="1" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsChartTabRegion }" />
+</Grid>
 </UserControl>

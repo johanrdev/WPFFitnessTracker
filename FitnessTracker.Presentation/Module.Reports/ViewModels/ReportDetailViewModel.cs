@@ -62,6 +62,8 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
             set => SetProperty(ref _title, value);
         }
 
+        public bool IsClosable => true;
+
         public DelegateCommand UpdateCommand { get; }
 
         public ReportDetailViewModel(IEventAggregator eventAggregator, IDataProvider<Report> reportsProvider)
