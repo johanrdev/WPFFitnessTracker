@@ -36,6 +36,7 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
 
         public DelegateCommand AddReportCommand { get; }
         public DelegateCommand<object> DeleteSelectedCommand { get; }
+        public DelegateCommand<object> OpenReportDetailCommand { get; }
 
         public ReportsDataGridViewModel(
             IEventAggregator eventAggregator, 
@@ -52,6 +53,19 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
             AddReportCommand = new DelegateCommand(ExecuteAddReportCommand);
             DeleteSelectedCommand = new DelegateCommand<object>(ExecuteDeleteSelectedCommand, CanExecuteDeleteSelectedCommand)
                 .ObservesProperty(() => SelectedReport);
+            OpenReportDetailCommand = new DelegateCommand<object>(ExecuteOpenReportDetailCommand);
+        }
+
+        private void ExecuteOpenReportDetailCommand(object obj)
+        {
+            if (obj == null) return;
+
+            if (obj is Report)
+            {
+                var report = (Report)obj;
+
+                _eventAggregator.GetEvent<SelectReportChartPointEvent>().Publish(report);
+            }
         }
 
         private void LoadData()
