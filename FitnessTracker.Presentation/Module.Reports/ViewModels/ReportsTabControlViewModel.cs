@@ -27,9 +27,9 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
 
             ReportsProvider = reportsProvider;
 
-            eventAggregator.GetEvent<AfterLoadedReportsEvent>().Subscribe(Initialize);
-
-            _eventAggregator.GetEvent<SelectReportChartPointEvent>().Subscribe(InjectView);
+            _eventAggregator.GetEvent<AfterLoadedReportsEvent>().Subscribe(Initialize);
+            _eventAggregator.GetEvent<ReloadReportsRepositoryEvent>().Subscribe(Initialize);
+            _eventAggregator.GetEvent<SelectReportChartPointEvent>().Subscribe(Navigate);
         }
 
         private void Initialize()
@@ -39,10 +39,12 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
             _eventAggregator.GetEvent<LoadReportsTabControlEvent>().Publish();
         }
 
-        private void InjectView(Report report)
+        private void Navigate(Report report)
         {
             var param = new NavigationParameters();
+
             param.Add("Report", report);
+
             _regionManager.RequestNavigate(RegionNames.ReportsChartTabRegion, "ReportDetailView", param);
         }
     }

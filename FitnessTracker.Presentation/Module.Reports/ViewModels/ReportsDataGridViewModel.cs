@@ -52,6 +52,8 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
             DeleteSelectedCommand = new DelegateCommand<object>(ExecuteDeleteSelectedCommand, CanExecuteDeleteSelectedCommand)
                 .ObservesProperty(() => SelectedReport);
             OpenReportDetailCommand = new DelegateCommand<object>(ExecuteOpenReportDetailCommand);
+
+            _eventAggregator.GetEvent<ReloadReportsRepositoryEvent>().Subscribe(LoadData);
         }
 
         private void ExecuteOpenReportDetailCommand(object obj)
