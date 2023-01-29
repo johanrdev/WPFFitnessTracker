@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events\AfterLoadedReportsEvent.cs" />
+    <Compile Include="Events\LoadReportsTabControlEvent.cs" />
+    <Compile Include="Events\SelectReportChartPointEvent.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

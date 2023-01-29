@@ -4,6 +4,7 @@ using FitnessTracker.Infrastructure.Services;
 using FitnessTracker.Presentation.Module.Main;
 using FitnessTracker.Presentation.Module.Main.Views;
 using FitnessTracker.Presentation.Module.Reports;
+using FitnessTracker.Presentation.Module.Reports.Views;
 using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -25,6 +26,12 @@ namespace FitnessTracker.Presentation
         {
             // Register services
             containerRegistry.RegisterSingleton<IDataProvider<Report>, ReportsProvider>();
+
+            containerRegistry.RegisterForNavigation<ReportsChartView>();
+            containerRegistry.RegisterForNavigation<ReportDetailView>();
+
+            containerRegistry.Register<object, ReportsChartView>("ReportsChartView");
+            containerRegistry.Register<object, ReportDetailView>("ReportDetailView");
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

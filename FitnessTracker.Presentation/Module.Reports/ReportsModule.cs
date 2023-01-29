@@ -16,6 +16,7 @@ namespace FitnessTracker.Presentation.Module.Reports
             regionManager.RegisterViewWithRegion(RegionNames.ReportsChartRegion, ViewTypes.ReportsChartView);
             regionManager.RegisterViewWithRegion(RegionNames.ReportsChartOptionsRegion, ViewTypes.ReportsChartOptionsView);
             regionManager.RegisterViewWithRegion(RegionNames.ReportsDataGridRegion, ViewTypes.ReportsDataGridView);
+            regionManager.RegisterViewWithRegion(RegionNames.ReportsTabControlRegion, ViewTypes.ReportsTabControlView);
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)

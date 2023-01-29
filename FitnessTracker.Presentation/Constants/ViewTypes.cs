@@ -12,5 +12,8 @@ namespace FitnessTracker.Presentation.Constants
         public static Type ReportsChartView = typeof(ReportsChartView);
         public static Type ReportsChartOptionsView = typeof(ReportsChartOptionsView);
         public static Type ReportsDataGridView = typeof(ReportsDataGridView);
+        public static Type ReportDetailView = typeof(ReportDetailView);
+
+        public static Type ReportsTabControlView = typeof(ReportsTabControlView);
     }
 }

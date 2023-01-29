@@ -2,11 +2,13 @@
 using FitnessTracker.Domain.Events;
 using FitnessTracker.Domain.Models;
 using LiveChartsCore;
+using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
+using Prism.Regions;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,8 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
 {
     internal class ReportsChartViewModel : BindableBase
     {
+        private IRegionManager _regionManager;
+        private IEventAggregator _eventAggregator;
         private IDataProvider<Report> _reportsProvider;
 
         public IDataProvider<Report> ReportsProvider
@@ -24,17 +28,37 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
             set => SetProperty(ref _reportsProvider, value);
         }
 
+        public string Title => "Diagram";
+
         public ObservableCollection<ISeries> Series { get; }
         public List<Axis> XAxes { get; }
-        public DelegateCommand ChartPointPointerDownCommand { get; }
+        public DelegateCommand<object> OpenChartPointDataCommand { get; }
 
-        public ReportsChartViewModel(IEventAggregator eventAggregator, IDataProvider<Report> reportsProvider)
+        public ReportsChartViewModel(IRegionManager regionManager, IEventAggregator eventAggregator, IDataProvider<Report> reportsProvider)
         {
+            _regionManager = regionManager;
+            _eventAggregator = eventAggregator;
             _reportsProvider = reportsProvider;
             Series = new ObservableCollection<ISeries>();
             XAxes = new List<Axis>();
 
-            eventAggregator.GetEvent<AfterLoadedReportsEvent>().Subscribe(Initialize);
+            eventAggregator.GetEvent<LoadReportsTabControlEvent>().Subscribe(Initialize);
+
+            OpenChartPointDataCommand = new DelegateCommand<object>(ExecuteOpenChartPointDataCommand);
+
+        }
+
+        private void ExecuteOpenChartPointDataCommand(object obj)
+        {
+            if (obj == null) return;
+
+            if (obj is ChartPoint)
+            {
+                var point = (ChartPoint)obj;
+                var report = (Report)point.Context.DataSource;
+
+                _eventAggregator.GetEvent<SelectReportChartPointEvent>().Publish(report);
+            }
         }
 
         private void Initialize()
@@ -46,6 +70,7 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
 
             Series.Clear();
             XAxes.Clear();
+
             Series.Add(lineSeries);
             XAxes.Add(xAxis);
         }
@@ -58,6 +83,7 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
                 {
                     y.PrimaryValue = x.Weight;
                     y.SecondaryValue = x.Date.Ticks;
+                    y.TertiaryValue = x.Id;
                 },
                 Name = "Weight",
                 Values = ReportsProvider.Data,
@@ -75,8 +101,8 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
         {
             return new Axis
             {
-                Labeler = value => value < 0.0 
-                    ? (new DateTime((long)0.0).ToString("MM/dd/yy")) 
+                Labeler = value => value < 0.0
+                    ? (new DateTime((long)0.0).ToString("MM/dd/yy"))
                     : (new DateTime((long)value).ToString("MM/dd/yy")),
                 UnitWidth = TimeSpan.FromDays(1).Ticks,
                 MinStep = TimeSpan.FromDays(1).Ticks,

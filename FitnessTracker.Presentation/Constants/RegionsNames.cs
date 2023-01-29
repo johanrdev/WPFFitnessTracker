@@ -8,5 +8,8 @@
         public static string ReportsChartRegion = "ReportsChartRegion";
         public static string ReportsChartOptionsRegion = "ReportsChartOptionsRegion";
         public static string ReportsDataGridRegion = "ReportsDataGridRegion";
+        public static string ReportsChartTabRegion = "ReportsChartTabRegion";
+
+        public static string ReportsTabControlRegion = "ReportsTabControlRegion";
     }
 }

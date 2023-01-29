@@ -9,14 +9,16 @@ namespace FitnessTracker.Presentation.Validation.Rules
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (!DateTime.TryParse(value.ToString(), out DateTime output))
+            if (!DateTime.TryParse(value.ToString(), out _))
             {
                 return new ValidationResult(false, "Value must be a date.");
             }
 
             if (DateTime.Parse(value.ToString()) > DateTime.Now)
             {
-                return new ValidationResult(false, "Date cannot be a future date.");
+                Debug.WriteLine(value);
+
+                return new ValidationResult(false, "Value cannot be a future date.");
             }
 
             return ValidationResult.ValidResult;
