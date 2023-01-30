@@ -23,6 +23,53 @@
                 </Border>
             </StackPanel>
         </ControlTemplate>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="#FFABAdB3"/>
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style x:Key="TextBoxStyle1" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="#7986cb" />
+            <Setter Property="BorderBrush" Value="#9fa8da " />
+            <Setter Property="Foreground" Value="#c5cae9"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4" SnapsToDevicePixels="True" Padding="4">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="8" Direction="1360" Color="Black" Opacity="0.2" BlurRadius="12" />
+                            </Border.Effect>
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -42,7 +89,7 @@
         <Label Grid.Column="0" Grid.Row="0" Content="Date" />
         <DatePicker Grid.Column="1" Grid.Row="0" SelectedDate="{ Binding Path=Date, ValidatesOnNotifyDataErrors=True }" Validation.ErrorTemplate="{ DynamicResource ValidationErrorTemplate }" Padding="5" Margin="0, 0, 0, 5" />
         <Label Grid.Column="0" Grid.Row="2" Content="Weight" />
-        <TextBox Grid.Column="1" Grid.Row="2" Padding="5" Margin="0, 0, 0, 5" Text="{ Binding Path=Weight, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True }" Validation.ErrorTemplate="{ DynamicResource ValidationErrorTemplate }" />
+        <TextBox Style="{DynamicResource TextBoxStyle1}" Grid.Column="1" Grid.Row="2" Padding="5" Margin="0, 0, 0, 5" Text="{ Binding Path=Weight, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True }" Validation.ErrorTemplate="{ DynamicResource ValidationErrorTemplate }" />
 
         <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Update" Padding="5" Width="80" Command="{ Binding Path=UpdateCommand }">

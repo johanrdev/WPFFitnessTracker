@@ -95,10 +95,11 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
                 Name = "Weight",
                 Values = ReportsProvider.Data,
                 TooltipLabelFormatter = value => $"{value.Context.Series.Name}: {value.PrimaryValue} KG",
-                Stroke = new SolidColorPaint(new SKColor(194, 24, 91, 255)) { StrokeThickness = 4 },
-                Fill = new SolidColorPaint(new SKColor(173, 20, 87, 127)),
+                Stroke = new SolidColorPaint(new SKColor(255, 112, 67, 255)) { StrokeThickness = 6 },
+                Fill = new SolidColorPaint(new SKColor(255, 112, 67, 127)),
                 //GeometryFill = new SolidColorPaint(new SKColor(240, 98, 146, 255)),
-                GeometryStroke = new SolidColorPaint(new SKColor(194, 24, 91, 255)) { StrokeThickness = 2 }
+                GeometryStroke = new SolidColorPaint(new SKColor(255, 112, 67, 255)),
+                GeometrySize = 0
             };
         }
 
@@ -111,11 +112,12 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
                     : (new DateTime((long)value).ToString("MM/dd/yy")),
                 UnitWidth = TimeSpan.FromDays(1).Ticks,
                 MinStep = TimeSpan.FromDays(1).Ticks,
-                LabelsRotation = 45,
-                SeparatorsPaint = new SolidColorPaint(new SKColor(26, 35, 126)) { StrokeThickness = 2 },
-                CrosshairPaint = new SolidColorPaint(new SKColor(40, 53, 147, 255)) { StrokeThickness = 2 },
-                LabelsPaint = new SolidColorPaint(new SKColor(159, 168, 218, 255)),
-                TextSize = 11.0
+                //LabelsRotation = 45,
+                //SeparatorsPaint = new SolidColorPaint(new SKColor(0, 0, 0, 50)) { StrokeThickness = 1 },
+                //CrosshairPaint = new SolidColorPaint(new SKColor(40, 53, 147, 255)) { StrokeThickness = 2 },
+                //LabelsPaint = new SolidColorPaint(new SKColor(159, 168, 218, 255)),
+                TextSize = 13,
+                ShowSeparatorLines = false
             };
         }
 
@@ -123,9 +125,10 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
         {
             return new Axis
             {
-                SeparatorsPaint = new SolidColorPaint(new SKColor(26, 35, 126)) { StrokeThickness = 2 },
-                LabelsPaint = new SolidColorPaint(new SKColor(159, 168, 218, 255)),
-                TextSize = 11.0
+                SeparatorsPaint = new SolidColorPaint(new SKColor(0, 0, 0, 25)) { StrokeThickness = 1 },
+                //LabelsPaint = new SolidColorPaint(new SKColor(159, 168, 218, 255)),
+                TextSize = 13,
+                ShowSeparatorLines = true
             };
         }
     }

@@ -5,40 +5,104 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:constants="clr-namespace:FitnessTracker.Presentation.Constants"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="{ Binding Path=Title, FallbackValue='AppName' }" Height="900" Width="1600">
-    <Border Background="#1a237e">
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Title="{ Binding Path=Title, FallbackValue='AppName' }" Height="740" Width="1280">
+    <Window.Resources>
+        <Style x:Key="GridSplitterPreviewStyle" >
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Fill="#80000000"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="GridSplitterStyle1" TargetType="{x:Type GridSplitter}">
+            <Setter Property="Background"
+                Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+            <Setter Property="PreviewStyle" Value="{StaticResource GridSplitterPreviewStyle}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridSplitter}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5">
+                            <Canvas RenderOptions.EdgeMode="Aliased" UseLayoutRounding="True"
+                                Height="6" VerticalAlignment="Center"
+                                Width="50" HorizontalAlignment="Center">
+                                <Line X1="0" X2="50" Y1="0" Y2="0"
+                                  Stroke="White" StrokeThickness="1"/>
+                                <Line X1="0" X2="50" Y1="1" Y2="1"
+                                  Stroke="#A0A0A0" StrokeThickness="1"/>
+                                <Line X1="0" X2="50" Y1="4" Y2="4"
+                                  Stroke="White" StrokeThickness="1"/>
+                                <Line X1="0" X2="50" Y1="5" Y2="5"
+                                  Stroke="#A0A0A0" StrokeThickness="1"/>
+                            </Canvas>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="GridSplitterStyle2" TargetType="{x:Type GridSplitter}">
+            <Setter Property="Background"
+                Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+            <Setter Property="PreviewStyle" Value="{StaticResource GridSplitterPreviewStyle}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridSplitter}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5">
+                            <Canvas RenderOptions.EdgeMode="Aliased" UseLayoutRounding="True"
+                                Height="50" VerticalAlignment="Center"
+                                Width="6" HorizontalAlignment="Center">
+                                <Line X1="0" X2="0" Y1="0" Y2="50"
+                                  Stroke="White" StrokeThickness="1"/>
+                                <Line X1="1" X2="1" Y1="0" Y2="50"
+                                  Stroke="#A0A0A0" StrokeThickness="1"/>
+                                <Line X1="4" X2="4" Y1="0" Y2="50"
+                                  Stroke="White" StrokeThickness="1"/>
+                                <Line X1="5" X2="5" Y1="0" Y2="50"
+                                  Stroke="#A0A0A0" StrokeThickness="1"/>
+                            </Canvas>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border MouseDown="Border_MouseDown">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+            <!--<Label Grid.Row="0" Content="{ Binding Path=Title, FallbackValue='AppName' }" FontSize="22" VerticalContentAlignment="Center" Background="#1a237e" Foreground="#3949ab" FontWeight="SemiBold" Height="80" Padding="20, 0" />-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" MinWidth="80" MaxWidth="400" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Content="{ Binding Path=Title, FallbackValue='AppName' }" FontSize="22" VerticalContentAlignment="Center" Background="#1a237e" Foreground="#3949ab" FontWeight="SemiBold" Height="80" Padding="20, 0" />
+            <ContentControl Grid.Column="0" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.NavigationRegion }" />
 
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
 
-                <ContentControl Grid.Column="0" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.NavigationRegion }" />
-                <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="Transparent" />
+            <GridSplitter Grid.Column="1" Width="1" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
 
-                <Border Grid.Column="2" CornerRadius="50, 0, 0, 0" Padding="20">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0.5, 1" EndPoint="1, 0.5">
-                            <GradientStop Color="#283593" Offset="0.5" />
-                            <GradientStop Color="#1a237e" Offset="-1" />
-                        </LinearGradientBrush>
-                    </Border.Background>
+            <Border Grid.Column="2" CornerRadius="0, 10, 10, 0" Padding="20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 2">
+                        <GradientStop Color="#fafafa" Offset="0" />
+                        <GradientStop Color="#bdbdbd" Offset="2.5" />
+                    </LinearGradientBrush>
+                </Border.Background>
 
-                    <ContentControl Grid.Column="2" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ContentRegion }" />
-                </Border>
-                
-            </Grid>
+                <ContentControl Grid.Column="2" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ContentRegion }" />
+            </Border>
         </Grid>
     </Border>
 </Window>

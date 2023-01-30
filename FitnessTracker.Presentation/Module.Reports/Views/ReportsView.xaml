@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <BorderGapMaskConverter x:Key="BorderGapMaskConverter"/>
         <Style TargetType="{x:Type GroupBox}">
-            <Setter Property="Foreground" Value="#7986cb" />
+            <Setter Property="Foreground" Value="#424242" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="BorderBrush" Value="#D5DFE5"/>
@@ -63,25 +63,41 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="4*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" MaxWidth="300" />
             </Grid.ColumnDefinitions>
 
             <GroupBox Grid.Column="0" Header="OVERVIEW" Margin="5">
                 <ContentControl prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsTabControlRegion }" />
             </GroupBox>
-            <GridSplitter Grid.Column="1" Width="5" Background="#1a237e" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+            <GridSplitter Grid.Column="1" Width="10"
+                  VerticalAlignment="Stretch" HorizontalAlignment="Center"
+                  BorderBrush="White" BorderThickness="0"
+                  Style="{DynamicResource GridSplitterStyle2}">
+                <GridSplitter.Background>
+                    <SolidColorBrush Color="Transparent" />
+                </GridSplitter.Background>
+            </GridSplitter>
+
             <GroupBox Grid.Column="2" Header="OPTIONS" Margin="5">
                 <ContentControl prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ReportsChartOptionsRegion }" />
             </GroupBox>
         </Grid>
 
-        <GridSplitter Grid.Row="1" Height="5" Background="#1a237e" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+        <GridSplitter Grid.Row ="1" Grid.ColumnSpan="2" Height="10"
+                  VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                  BorderBrush="White" BorderThickness="0"
+                  Style="{DynamicResource GridSplitterStyle1}">
+            <GridSplitter.Background>
+                <SolidColorBrush Color="Transparent" />
+            </GridSplitter.Background>
+        </GridSplitter>
+        
+        <!--<Border Grid.Row="2">
 
-        <Border Grid.Row="2">
-
-        </Border>
+        </Border>-->
 
         <Grid Grid.Row="2">
             <GroupBox Header="DATA" Margin="5">

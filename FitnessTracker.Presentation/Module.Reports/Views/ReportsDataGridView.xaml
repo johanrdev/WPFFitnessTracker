@@ -40,16 +40,24 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <ToolBarTray Style="{DynamicResource ToolBarTrayStyle1}" Grid.Row="0" IsLocked="True" Background="#1a237e">
-                <ToolBar Style="{DynamicResource ToolBarStyle1}" Grid.Row="0" Background="Transparent">
-                    <Button Width="30" Height="30" Padding="6" Command="{ Binding Path=AddReportCommand }">
-                        <fa:ImageAwesome Icon="Plus" Foreground="LightGray" />
-                    </Button>
-                    <Button Width="30" Height="30" Padding="6" Command="{ Binding Path=DeleteSelectedCommand }" CommandParameter="{ Binding Path=SelectedItems, ElementName=ReportsDataGrid }">
-                        <fa:ImageAwesome Icon="Trash" Foreground="LightGray" />
-                    </Button>
-                </ToolBar>
-            </ToolBarTray>
+            <Border Grid.Row="0" BorderBrush="#bdbdbd" CornerRadius="8">
+                <ToolBarTray Style="{DynamicResource ToolBarTrayStyle1}" IsLocked="True" Background="Transparent" HorizontalAlignment="Right">
+                    <ToolBar Style="{DynamicResource ToolBarStyle1}" Background="Transparent">
+                        <Button MinWidth="80" Margin="0, 0, 10, 0" Command="{ Binding Path=AddReportCommand }">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:ImageAwesome Icon="Plus" Foreground="#bdbdbd" Width="15" />
+                                <Label Content="Add new" Foreground="#bdbdbd" FontWeight="Regular" />
+                            </StackPanel>
+                        </Button>
+                        <Button MinWidth="80" Margin="0, 0, 10, 0" Command="{ Binding Path=DeleteSelectedCommand }" CommandParameter="{ Binding Path=SelectedItems, ElementName=ReportsDataGrid }">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:ImageAwesome Icon="Close" Foreground="#bdbdbd" Width="15" />
+                                <Label Content="Delete selected" Foreground="#bdbdbd" FontWeight="Regular" />
+                            </StackPanel>
+                        </Button>
+                    </ToolBar>
+                </ToolBarTray>
+            </Border>
 
             <DataGrid x:Name="ReportsDataGrid" Grid.Row="1" ItemsSource="{ Binding Path=ReportsProvider.Data }" SelectedItem="{ Binding Path=SelectedReport }" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False">
                 <!--<DataGrid.CellStyle>

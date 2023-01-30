@@ -6,7 +6,10 @@
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Border Padding="10" Margin="0, 10, 0, 0" BorderThickness="0" BorderBrush="#bbb" CornerRadius="10" Background="White">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="2" BlurRadius="4" Color="#333333" Opacity="0.15" Direction="270" />
+        </Border.Effect>
         <lvc:CartesianChart Grid.Row="1" Series="{ Binding Path=Series }" XAxes="{ Binding Path=XAxes }" YAxes="{ Binding Path=YAxes }" LegendPosition="Bottom" ChartPointPointerDownCommand="{ Binding Path=OpenChartPointDataCommand }" />
-    </Grid>
+    </Border>
 </UserControl>

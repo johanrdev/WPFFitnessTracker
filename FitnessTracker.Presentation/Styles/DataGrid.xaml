@@ -4,7 +4,7 @@
     <Style TargetType="{ x:Type DataGridCell }">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="FontSize" Value="12" />
-        <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+        <Setter Property="BorderThickness" Value="0, 0, 0, 0" />
         <Setter Property="BorderBrush" Value="#1a237e" />
         <Setter Property="Template">
             <Setter.Value>
@@ -41,7 +41,7 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </SelectiveScrollingGrid.RowDefinitions>
-                            <DataGridCellsPresenter Grid.Column="1" Height="30" ItemsPanel="{ TemplateBinding ItemsPanel }" SnapsToDevicePixels="{ TemplateBinding SnapsToDevicePixels }" />
+                            <DataGridCellsPresenter Grid.Column="1" Height="40" ItemsPanel="{ TemplateBinding ItemsPanel }" SnapsToDevicePixels="{ TemplateBinding SnapsToDevicePixels }" />
                             <DataGridDetailsPresenter Grid.Row="1" Grid.Column="1" SelectiveScrollingGrid.SelectiveScrollingOrientation="{ Binding AreRowDetailsFrozen, ConverterParameter={ x:Static SelectiveScrollingOrientation.Vertical }, Converter={ x:Static DataGrid.RowDetailsScrollingConverter }, RelativeSource={ RelativeSource AncestorType={ x:Type DataGrid } } }" Visibility="{ TemplateBinding DetailsVisibility }" />
                             <DataGridRowHeader Grid.RowSpan="2" SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" Visibility="{ Binding HeadersVisibility, ConverterParameter={ x:Static DataGridHeadersVisibility.Row }, Converter={ x:Static DataGrid.HeadersVisibilityConverter }, RelativeSource={ RelativeSource AncestorType={ x:Type DataGrid } } }" />
                         </SelectiveScrollingGrid>
@@ -79,7 +79,6 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="#7986cb" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Padding" Value="6" />
         <Setter Property="Template">
@@ -123,17 +122,17 @@
 
     <Style TargetType="{x:Type DataGrid}">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="#7986cb"/>
         <Setter Property="BorderBrush" Value="#cfd8dc"/>
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
         <Setter Property="GridLinesVisibility" Value="Horizontal" />
         <Setter Property="HorizontalGridLinesBrush" Value="#1a237e" />
         <Setter Property="VerticalGridLinesBrush" Value="#1a237e" />
-        <Setter Property="HorizontalGridLinesBrush" Value="#1a237e" />
+        <Setter Property="HorizontalGridLinesBrush" Value="#ddd" />
         <Setter Property="HeadersVisibility" Value="Column" />
         <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Hidden" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Template">
             <Setter.Value>

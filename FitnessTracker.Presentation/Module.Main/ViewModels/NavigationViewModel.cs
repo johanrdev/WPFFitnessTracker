@@ -26,8 +26,20 @@ namespace FitnessTracker.Presentation.Module.Main.ViewModels
             _regionManager = regionManager;
 
             NavigationItems = new ObservableCollection<NavigationItem>();
-            NavigationItems.Add(new NavigationItem { DisplayName = "Start", ViewName = ViewTypes.StartView.ToString() });
-            NavigationItems.Add(new NavigationItem { DisplayName = "Reports", ViewName = ViewTypes.ReportsView.ToString() });
+            NavigationItems.Add(
+                new NavigationItem 
+                { 
+                    DisplayName = "Start", 
+                    ViewName = ViewTypes.StartView.ToString(),
+                    Icon = "Home"
+                });
+            NavigationItems.Add(
+                new NavigationItem 
+                { 
+                    DisplayName = "Reports", 
+                    ViewName = ViewTypes.ReportsView.ToString(),
+                    Icon = "Database"
+                });
             SelectedNavigationItem = NavigationItems.First();
 
             NavigateCommand = new DelegateCommand<object>(Execute);
@@ -47,6 +59,7 @@ namespace FitnessTracker.Presentation.Module.Main.ViewModels
         {
             public string DisplayName { get; set; }
             public string ViewName { get; set; }
+            public string Icon { get; set; }
         }
     }
 }
