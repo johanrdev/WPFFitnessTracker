@@ -15,7 +15,7 @@ namespace FitnessTracker.Presentation.Module.Reports.ViewModels
 {
     internal class ReportDetailViewModel : ValidationBindableBase, INavigationAware
     {
-        private string _title;
+        private string _title = "New Tab";
         private int _id;
         private DateTime _date;
         private string _weight;

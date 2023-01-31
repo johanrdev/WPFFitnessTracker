@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:constants="clr-namespace:FitnessTracker.Presentation.Constants"
-        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        AllowsTransparency="True"
+        AllowsTransparency="False"
         Background="Transparent"
+        ResizeMode="CanResize"
         Title="{ Binding Path=Title, FallbackValue='AppName' }" Height="740" Width="1280">
     <Window.Resources>
         <Style x:Key="GridSplitterPreviewStyle" >
@@ -79,21 +79,27 @@
             </Setter>
         </Style>
     </Window.Resources>
+    <Window.Effect>
+        <DropShadowEffect Color="Gray" BlurRadius="20" Direction="-90" RenderingBias="Quality" ShadowDepth="4"/>
+    </Window.Effect>
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="4" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
     <Border MouseDown="Border_MouseDown">
-        <Grid>
+        <DockPanel>
             <!--<Label Grid.Row="0" Content="{ Binding Path=Title, FallbackValue='AppName' }" FontSize="22" VerticalContentAlignment="Center" Background="#1a237e" Foreground="#3949ab" FontWeight="SemiBold" Height="80" Padding="20, 0" />-->
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" MinWidth="80" MaxWidth="400" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="5*" />
-            </Grid.ColumnDefinitions>
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />-->
+                <!--<ColumnDefinition Width="Auto" />-->
+                <!--<ColumnDefinition Width="5*" />
+            </Grid.ColumnDefinitions>-->
 
-            <ContentControl Grid.Column="0" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.NavigationRegion }" />
+            <ContentControl Grid.Column="0" DockPanel.Dock="Left" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.NavigationRegion }" />
 
 
-            <GridSplitter Grid.Column="1" Width="1" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+            <!--<GridSplitter Grid.Column="1" Width="1" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" />-->
 
-            <Border Grid.Column="2" CornerRadius="0, 10, 10, 0" Padding="20">
+            <Border DockPanel.Dock="Right" Grid.Column="1" CornerRadius="0, 10, 10, 0" Padding="20">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 2">
                         <GradientStop Color="#fafafa" Offset="0" />
@@ -103,6 +109,6 @@
 
                 <ContentControl Grid.Column="2" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.ContentRegion }" />
             </Border>
-        </Grid>
+        </DockPanel>
     </Border>
 </Window>
