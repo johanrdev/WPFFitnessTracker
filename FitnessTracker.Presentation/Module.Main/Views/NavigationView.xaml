@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="180">
+             d:DesignHeight="450" d:DesignWidth="250">
     <Grid>
         <ListView Width="250" ItemsSource="{ Binding Path=NavigationItems }" SelectedItem="{ Binding Path=SelectedNavigationItem }" Style="{ StaticResource NavigationListView }" ItemContainerStyle="{ StaticResource NavigationListViewItemContainerStyle }" SelectionMode="Single" DisplayMemberPath="DisplayName">
             <i:Interaction.Triggers>

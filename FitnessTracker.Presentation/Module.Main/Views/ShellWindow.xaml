@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:constants="clr-namespace:FitnessTracker.Presentation.Constants"
+        xmlns:fa2="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
@@ -93,8 +94,20 @@
                 <!--<ColumnDefinition Width="Auto" />-->
                 <!--<ColumnDefinition Width="5*" />
             </Grid.ColumnDefinitions>-->
+            <Border DockPanel.Dock="Left" Grid.Column="0" CornerRadius="10, 0, 0, 10" Background="#81c784" Width="250">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-            <ContentControl Grid.Column="0" DockPanel.Dock="Left" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.NavigationRegion }" />
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 30, 0, 0">
+                        <fa2:IconImage Icon="leaf" Width="45" Foreground="#e8f5e9" />
+                        <Label Grid.Row="0" Content="{ Binding Path=Title, FallbackValue='AppName' }" Foreground="#e8f5e9" FontSize="18" FontWeight="SemiBold" />
+                    </StackPanel>
+                    <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{ x:Static constants:RegionNames.NavigationRegion }" Margin="0, 40, 0, 0" />
+                </Grid>
+            </Border>
 
 
             <!--<GridSplitter Grid.Column="1" Width="1" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" />-->
